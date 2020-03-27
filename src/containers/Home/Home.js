@@ -4,6 +4,9 @@ const apiURL = "https://random.dog/woof.json"
 const imageTypes = ["jpg", "png", "jpeg"]
 const videoTypes = ["webm", "mp4", "gif"]
 
+// TODO
+// gifs are not being played with video tag?
+
 class Home extends React.Component {
   state = {
     currentDogUrl: {
@@ -32,6 +35,18 @@ class Home extends React.Component {
         }
       )
   }
+
+  favoriteADog = () => {
+    let array = JSON.parse(localStorage.getItem("favouriteDogs")) || []
+
+    if (!array.some(e => e.url == this.state.currentDogUrl.url)){
+      array.push(this.state.currentDogUrl)
+      localStorage.setItem("favouriteDogs", JSON.stringify(array))
+    }
+
+    // probably trigger getNewImage for UX purposes?
+  }
+
   render() {
     return (
       <div>
@@ -41,7 +56,7 @@ class Home extends React.Component {
 
         </div>
         <h1>Dog Image Generator!</h1>
-        <button>Save this for later admiration</button>
+        <button onClick={() => this.favoriteADog()}>Save this for later admiration</button>
         <button onClick={() => this.getNewImage()}>Get new Doggo</button>
       </div>
     );
