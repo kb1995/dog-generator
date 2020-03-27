@@ -8,7 +8,7 @@ function Main() {
     <main>
       <Switch>
         <Route exact path="/"><Home/></Route>
-        <Route exact path="/favourite-doggos"><Favourites/></Route>
+        <Route exact path="/favourites"><Favourites/></Route>
       </Switch>
     </main>
   );

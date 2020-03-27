@@ -1,11 +1,10 @@
 import React from 'react';
+import Image from '../../components/Image'
+import Video from '../../components/Video'
 
 const apiURL = "https://random.dog/woof.json"
-const imageTypes = ["jpg", "png", "jpeg"]
-const videoTypes = ["webm", "mp4", "gif"]
-
-// TODO
-// gifs are not being played with video tag?
+const imageTypes = ["jpg", "png", "jpeg", "gif"]
+const videoTypes = ["webm", "mp4"]
 
 class Home extends React.Component {
   state = {
@@ -26,7 +25,7 @@ class Home extends React.Component {
           currentDogUrl: {
             url: result.url,
             mediaType: result.url.split(".").slice(-1)[0].toLowerCase()
-          }
+          },
         })
         console.log(this.state.currentDogUrl)
       },
@@ -42,18 +41,19 @@ class Home extends React.Component {
     if (!array.some(e => e.url == this.state.currentDogUrl.url)){
       array.push(this.state.currentDogUrl)
       localStorage.setItem("favouriteDogs", JSON.stringify(array))
+    } else{
+      alert("This dog is already in your favourites.")
     }
 
-    // probably trigger getNewImage for UX purposes?
+    this.getNewImage()
   }
 
   render() {
     return (
       <div>
         <div>
-          {imageTypes.includes(this.state.currentDogUrl.mediaType) && <img style={{ width: "300px", height: "300px", objectFit: "cover" }} src={this.state.currentDogUrl.url} />}
-          {videoTypes.includes(this.state.currentDogUrl.mediaType) && <video style={{ width: "300px", height: "300px", objectFit: "cover" }} src={this.state.currentDogUrl.url} controls autoPlay />}
-
+          {imageTypes.includes(this.state.currentDogUrl.mediaType) && <Image url={this.state.currentDogUrl.url} />}
+          {videoTypes.includes(this.state.currentDogUrl.mediaType) && <Video url={this.state.currentDogUrl.url} />}
         </div>
         <h1>Dog Image Generator!</h1>
         <button onClick={() => this.favoriteADog()}>Save this for later admiration</button>

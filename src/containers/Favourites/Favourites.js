@@ -1,7 +1,9 @@
 import React from 'react';
+import Image from '../../components/Image'
+import Video from '../../components/Video'
 
-const imageTypes = ["jpg", "png", "jpeg"]
-const videoTypes = ["webm", "mp4", "gif"]
+const imageTypes = ["jpg", "png", "jpeg", "gif"]
+const videoTypes = ["webm", "mp4"]
 
 // TODO
 
@@ -16,8 +18,8 @@ function Favourites() {
       {JSON.parse(localStorage.getItem("favouriteDogs")) && JSON.parse(localStorage.getItem("favouriteDogs")).map((item, idx) => {
         return(
           <div key={idx}>
-            {imageTypes.includes(item.mediaType) && <img style={{ width: "300px", height: "300px", objectFit: "cover" }} src={item.url} />}
-            {videoTypes.includes(item.mediaType) && <video style={{ width: "300px", height: "300px", objectFit: "cover" }} src={item.url} controls autoPlay />}
+            {imageTypes.includes(item.mediaType) && <Image url={item.url} />}
+            {videoTypes.includes(item.mediaType) && <Video url={item.url} />}
           </div>
         )
       })}
