@@ -41,6 +41,7 @@ class Home extends React.Component {
     if (!array.some(e => e.url == this.state.currentDogUrl.url)){
       array.push(this.state.currentDogUrl)
       localStorage.setItem("favouriteDogs", JSON.stringify(array))
+      // TODO success message that fades after 2-3 seconds?
     } else{
       alert("This dog is already in your favourites.")
     }
