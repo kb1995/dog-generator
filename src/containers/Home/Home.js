@@ -37,11 +37,10 @@ class Home extends React.Component {
     if (!array.some(e => e.url === this.state.assetData.url)){
       array.push(this.state.assetData)
       localStorage.setItem("favouriteDogs", JSON.stringify(array))
+      alert("Dog saved!")
     } else{
       alert("This dog is already in your favourites.")
     }
-
-    this.getNewImage()
   }
 
   render() {
@@ -63,9 +62,7 @@ class Home extends React.Component {
           </div>
         </div>
         <div className="lg:w-1/2" style={{height: "400px"}}>
-          <div className="lg:w-4/5 mx-auto h-full">
-            <Asset data={this.state.assetData} />
-          </div>
+          <Asset objectCover={false} data={this.state.assetData} />
         </div>
       </div>
     );
