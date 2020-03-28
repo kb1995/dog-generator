@@ -21,7 +21,7 @@ class Favourites extends React.Component {
   }
 
   render() {
-    if (JSON.parse(localStorage.getItem("favouriteDogs")) === undefined || !JSON.parse(localStorage.getItem("favouriteDogs")).length) {
+    if (!JSON.parse(localStorage.getItem("favouriteDogs")) || !JSON.parse(localStorage.getItem("favouriteDogs")).length) {
       return (
         <div className="flex justify-center items-center mt-16 lg:mt-32 text-center">
           <h2 className="text-4xl font-semibold">You don't have any saved dogs. <Link className="transition duration-300 text-blue-500 hover:text-blue-600 hover:underline" to="/">Go back</Link> and add some.</h2>
