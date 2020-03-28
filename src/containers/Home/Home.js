@@ -48,7 +48,7 @@ class Home extends React.Component {
     return (
       <div className="flex items-center flex-col lg:flex-row mt-16 lg:mt-32">
         <div className="lg:w-1/2">
-          <h1 className="text-6xl font-bold lg:mb-12 text-center lg:text-left leading-tight">Dog Image Generator!</h1>
+          <h1 className="text-6xl font-bold lg:mb-12 text-center lg:text-left leading-tight">Your daily dose of doggos!</h1>
           <div className="flex flex-col lg:flex-row items-center my-6">
             <span className="inline-flex rounded-md shadow-sm mr-3 mb-3 lg:mb-0">
               <button onClick={() => this.getNewImage()} type="button" className="inline-flex items-center px-4 py-2 border border-transparent leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
@@ -63,7 +63,7 @@ class Home extends React.Component {
           </div>
         </div>
         <div className="lg:w-1/2" style={{height: "400px"}}>
-          <div className="lg:w-3/5 mx-auto h-full">
+          <div className="lg:w-4/5 mx-auto h-full">
             <Asset data={this.state.assetData} />
           </div>
         </div>

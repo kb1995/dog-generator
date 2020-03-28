@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import Asset from '../../components/Asset'
 
 class Favourites extends React.Component {
-  removeFromFavourites = (key) => {
-    let array = JSON.parse(localStorage.getItem("favouriteDogs"))
-    array.splice(key, 1);
-    localStorage.setItem("favouriteDogs", JSON.stringify(array))
+  state = {
+    assets: JSON.parse(localStorage.getItem("favouriteDogs"))
+  }
 
-    this.forceUpdate();
+  removeFromFavourites = (idx) => {
+    let arr = this.state.assets
+    arr.splice(idx,1)
+    
+    this.setState({assets: arr})
+    localStorage.setItem("favouriteDogs", JSON.stringify(this.state.assets))
   }
 
   removeAll = () => {
@@ -46,10 +50,10 @@ class Favourites extends React.Component {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-20">
-          {JSON.parse(localStorage.getItem("favouriteDogs")).map((item, idx) => {
+          {this.state.assets.map((item, idx) => {
             return (
-              <div key={idx} className="relative overflow-hidden" style={{height: "400px"}}>
-                <Asset data={item} />
+              <div key={item.url} className="relative overflow-hidden" style={{height: "400px"}}>
+                <Asset noLoadState={true} data={item} />
                 <button onClick={() => this.removeFromFavourites(idx)}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute top-0 right-0 p-3 bg-red-600 text-white shadow-lg transition duration-300 h-10 w-10 rounded-bl-lg hover:bg-red-700">
                     <polyline points="3 6 5 6 21 6"></polyline>
