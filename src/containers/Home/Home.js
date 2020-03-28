@@ -35,7 +35,7 @@ class Home extends React.Component {
   favoriteADog = () => {
     let array = JSON.parse(localStorage.getItem("favouriteDogs")) || []
 
-    if (!array.some(e => e.url == this.state.currentDogUrl.url)){
+    if (!array.some(e => e.url === this.state.currentDogUrl.url)){
       array.push(this.state.currentDogUrl)
       localStorage.setItem("favouriteDogs", JSON.stringify(array))
       // TODO success message that fades after 2-3 seconds?
