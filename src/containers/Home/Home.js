@@ -1,10 +1,7 @@
 import React from 'react';
-import Image from '../../components/Image'
-import Video from '../../components/Video'
+import Asset from '../../components/Asset'
 
 const apiURL = "https://random.dog/woof.json"
-const imageTypes = ["jpg", "png", "jpeg", "gif"]
-const videoTypes = ["webm", "mp4"]
 
 class Home extends React.Component {
   state = {
@@ -51,14 +48,27 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          {imageTypes.includes(this.state.currentDogUrl.mediaType) && <Image url={this.state.currentDogUrl.url} />}
-          {videoTypes.includes(this.state.currentDogUrl.mediaType) && <Video url={this.state.currentDogUrl.url} />}
+      <div className="flex items-center flex-col lg:flex-row mt-16 lg:mt-32">
+        <div className="lg:w-1/2">
+          <h1 className="text-6xl font-bold lg:mb-12 text-center lg:text-left leading-tight">Dog Image Generator!</h1>
+          <div className="flex flex-col lg:flex-row items-center my-6">
+            <span onClick={() => this.getNewImage()} className="inline-flex rounded-md shadow-sm mr-3 mb-3 lg:mb-0">
+              <button onClick={() => this.favoriteADog()} type="button" className="inline-flex items-center px-4 py-2 border border-transparent leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                Get a new doggo
+              </button>
+            </span>
+            <span className="inline-flex rounded-md shadow-sm">
+              <button onClick={() => this.favoriteADog()} type="button" className="inline-flex items-center px-4 py-2 border border-transparent leading-5 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150">
+                Save for later admiration
+              </button>
+            </span>
+          </div>
         </div>
-        <h1>Dog Image Generator!</h1>
-        <button onClick={() => this.favoriteADog()}>Save this for later admiration</button>
-        <button onClick={() => this.getNewImage()}>Get new Doggo</button>
+        <div className="lg:w-1/2" style={{height: "400px"}}>
+          <div className="lg:w-3/5 mx-auto h-full">
+            <Asset data={this.state.currentDogUrl} />
+          </div>
+        </div>
       </div>
     );
   }
